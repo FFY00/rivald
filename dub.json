@@ -1,0 +1,19 @@
+{
+    "name": "rivald",
+    "authors": [
+        "Filipe Laíns"
+    ],
+    "description": "Library to interface with the Steelseries Rival 310 mouse",
+    "copyright": "Copyright © 2018, Filipe Laíns",
+    "license": "GPLv3",
+    "sourceFiles": [
+        "source/rivald/cycle.d",
+        "source/rivald/device.d",
+        "source/rivald/error.d",
+        "source/rivald/util.d",
+        "source/rivald/values.d"
+    ],
+    "dependencies": {
+        "hidapi-d": ">=1.0.2"
+    }
+}

@@ -1,0 +1,8 @@
+# Build
+build/
+builddir/
+
+# Dub
+*.a
+dub.selections.json
+.dub/
