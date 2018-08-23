@@ -278,12 +278,55 @@ class RivalDevice
      *
      * https://github.com/FFY00/rival310-re/blob/master/5B.md
      */
+    void setLedCycle(ubyte led, Cycle cycle)
+    {
+        enforce!RivalError(led == Led.LOGO || led == Led.WHEEL, "Invalid Led ID.");
+
+        ubyte[Size.LONG] buf = cycle.getBuffer();
+
+        dev.write(buf, Size.LONG);
+        Thread.sleep(10.msecs);
+    }
+
+    /**
+     * Set Led cycle
+     *
+     * Params:
+     *      led =   Led ID
+     *      points =    Points of the cycle
+     *
+     * https://github.com/FFY00/rival310-re/blob/master/5B.md
+     */
     void setLedCycle(ubyte led, Point[] points)
     {
         enforce!RivalError(led == Led.LOGO || led == Led.WHEEL, "Invalid Led ID.");
 
         auto cycle = new Cycle(led);
         cycle.setPoints(points);
+
+        ubyte[Size.LONG] buf = cycle.getBuffer();
+
+        dev.write(buf, Size.LONG);
+        Thread.sleep(10.msecs);
+    }
+
+    /**
+     * Set Led cycle
+     *
+     * Params:
+     *      led =   Led ID
+     *      points =    Points of the cycle
+     *      duration =  Duration of the cycle
+     *
+     * https://github.com/FFY00/rival310-re/blob/master/5B.md
+     */
+    void setLedCycle(ubyte led, Point[] points, ushort duration)
+    {
+        enforce!RivalError(led == Led.LOGO || led == Led.WHEEL, "Invalid Led ID.");
+
+        auto cycle = new Cycle(led);
+        cycle.setPoints(points);
+        cycle.setDuration(duration);
 
         ubyte[Size.LONG] buf = cycle.getBuffer();
 
@@ -323,6 +366,26 @@ class RivalDevice
         assert(res[1] == 1);
 
         return tuple(res[1], res[0]);
+    }
+
+    void test()
+    {
+        ubyte[] buf = new ubyte[Size.NORMAL];
+        buf[0] = 0x91;
+        buf[1] = 0;
+        buf[2] = 2;
+        buf[3] = 0;
+        buf[4] = 0;
+
+        //      9A - 2
+        // 0 - 66
+        // 1 - 1
+        // 2 - 32
+
+        auto res = dev.command(buf, Size.NORMAL);
+        Thread.sleep(10.msecs);
+
+        log(res);
     }
 
 }

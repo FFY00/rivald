@@ -50,11 +50,49 @@ class Cycle
     }
 
     /**
+     * Sets the points
      *
+     * Params:
+     *      points =    Points in the cycle
      */
     void setPoints(Point[] points)
     {
         this.points = points;
+    }
+
+    /**
+     * Sets the duration
+     *
+     * Params:
+     *      duration =  Duration of the cycle
+     */
+    void setDuration(ushort duration)
+    {
+        this.duration = duration;
+    }
+
+    /**
+     * Sets the repeat bool
+     *
+     * Params:
+     *      repeat =    If cycle repeats
+     */
+    void setRepeat(bool repeat)
+    {
+        this.repeat = repeat;
+    }
+
+    /**
+     * Sets the trigger buttons
+     *
+     * Params:
+     *      buttons =   Button representation
+     *
+     * https://github.com/FFY00/rival310-re/blob/master/5B.md
+     */
+    void setDuration(ubyte buttons)
+    {
+        this.trigger_buttons = buttons;
     }
 
     /**

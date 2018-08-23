@@ -61,6 +61,9 @@ rivalcfg | rivalcfg | CLI | Standalone | Linux, *Window** and *MacOS**
 __*__
 Not tested
 
+**[1]**
+RivalGUI uses the *rivald* backend but is (not yet, will be) compatible with `ratbagd` (libratbag's daemon).
+
 ### License
 This software is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
