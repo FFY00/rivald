@@ -1,6 +1,6 @@
 project('rivald', 'd',
-    version: '0.0.0',
-    license: 'GPLv3')
+    version: '0.0.2',
+    license: 'GPL3')
 
 # Dependency versions
 hidapid_ver = '>=1.0.2'
@@ -20,6 +20,15 @@ endif
 subdir('source')
 #subdir('tests')
 subdir('tool')
+
+# Generate pkgconfig dile
+pkg = import('pkgconfig')
+pkg.generate(libraries : rivaldlib,
+             subdirs : 'rivald',
+             version : meson.project_version(),
+             name : 'librivald',
+             filebase : 'rivald',
+             description : 'Library to interface with the Steelseries Rival 310 mouse.')
 
 # Generate dub.json
 dub_sources = []
